@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Auxo Cheat - VIP Member</title>
+    <style>
+        /* ================== RESET CSS ================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            color: #fff;
+        }
+
+        /* ================== ẢNH NỀN LỚN (CONAN) ================== */
+        .bg-image {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.92) contrast(1.05);
+            z-index: 1;
+        }
+
+        /* ================== KHUNG CHÍNH ================== */
+        .app-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100vh;
+            max-width: 430px;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            overflow: hidden;
+        }
+
+        /* ================== HEADER ================== */
+        .app-header {
+            padding: 24px 20px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        }
+        .header-badge {
+            font-size: 10px;
+            font-weight: 700;
+            background: rgba(0, 255, 100, 0.2);
+            color: #00ff64;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 100, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            backdrop-filter: blur(4px);
+            text-shadow: 0 0 5px rgba(0,255,100,0.5);
+        }
+        .header-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #00ff64;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #00ff64;
+        }
+
+        /* ================== NỘI DUNG CHÍNH ================== */
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 20px 110px;
+            scrollbar-width: none;
+        }
+        .app-content::-webkit-scrollbar { display: none; }
+
+        /* ================== TAB TRANG CHỦ ================== */
+        .tab-page { display: none; animation: fadeIn 0.3s ease; }
+        .tab-page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card {
+            background: rgba(30, 30, 30, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 22px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .card-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 14px;
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #aaa; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+        .info-label svg { width: 18px; height: 18px; fill: #aaa; }
+        .info-value { font-weight: 700; color: #fff; text-align: right; }
+        .info-value.green { color: #00ff64; text-shadow: 0 0 10px rgba(0,255,100,0.4); }
+
+        .btn-telegram {
+            width: 100%;
+            height: 52px;
+            border-radius: 16px;
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .btn-telegram:active { transform: scale(0.97); background: rgba(255,255,255,0.1); }
+        .btn-telegram svg { width: 20px; height: 20px; fill: #fff; }
+
+        /* ================== TAB ỨNG DỤNG ================== */
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 10px 16px;
+            margin-bottom: 16px;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+        .search-bar svg {
+            width: 18px;
+            height: 18px;
+            fill: #888;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .search-bar input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+        .search-bar input::placeholder {
+            color: #888;
+        }
+
+        /* Ô VUÔNG LỚN CHỨA TẤT CẢ (ĐẬM MÀU HƠN) */
+        .feature-box {
+            background: rgba(15, 15, 15, 0.9); /* Đậm hơn */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Viền sáng hơn */
+            border-radius: 24px;
+            padding: 18px 14px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin: 0 auto;
+            width: 98%;
+            max-width: 390px;
+        }
+
+        /* Tiêu đề Danh Sách Game Vip */
+        .game-list-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .game-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .game-item {
+            background: rgba(40, 40, 40, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 18px;
+            padding: 14px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .game-item.active {
+            border-color: #00ff64;
+            background: rgba(0, 255, 100, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 100, 0.2);
+        }
+        .game-item.active::after {
+            content: 'Đang chọn';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00ff64;
+            color: #000;
+            font-size: 8px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,255,100,0.5);
+        }
+        .game-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            margin: 0 auto 6px;
+            object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .game-name { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
+        .game-pkg { font-size: 9px; color: #888; }
+
+        /* Tên game ở giữa (Free Fire / Free Fire Max) */
+        .selected-game-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #00ff64;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 12px 0 10px;
+            text-shadow: 0 0 10px rgba(0,255,100,0.4);
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        /* Item tính năng có viền trắng nhiều hơn, bên trong đậm hơn */
+        .feature-item {
+            background: rgba(35, 35, 35, 0.95); /* Đậm hơn */
+            border: 2px solid rgba(255, 255, 255, 0.4); /* Viền trắng dày hơn */
+            border-radius: 16px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .feature-item.active {
+            border-color: rgba(0, 255, 100, 0.8);
+            background: rgba(0, 255, 100, 0.15);
+            box-shadow: 0 0 15px rgba(0, 255, 100, 0.3), inset 0 0 10px rgba(0,255,100,0.1);
+        }
+
+        .feature-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        .feature-icon svg { width: 20px; height: 20px; fill: #aaa; transition: fill 0.3s; }
+        
+        .feature-item.active .feature-icon {
+            background: rgba(0, 255, 100, 0.2);
+            border-color: rgba(0, 255, 100, 0.4);
+        }
+        .feature-item.active .feature-icon svg { fill: #00ff64; }
+
+        .feature-text { flex: 1; }
+        .feature-text h4 { font-size: 15px; font-weight: 700; margin-bottom: 1px; transition: color 0.3s; }
+        .feature-text p { font-size: 10px; color: #888; }
+        .feature-item.active .feature-text h4 { color: #00ff64; }
+
+        /* Toggle Switch có viền trắng */
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 26px;
+            background: #444;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: background 0.3s, border 0.3s;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.6); /* Viền trắng */
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .toggle-switch.active { 
+            background: #00ff64; 
+            box-shadow: 0 0 10px rgba(0,255,100,0.5); 
+            border-color: rgba(255,255,255,0.9);
+        }
+        .toggle-switch.active::after { 
+            transform: translateX(22px); 
+            background: #000; 
+        }
+
+        .btn-play-game {
+            width: 100%;
+            height: 54px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #00e676, #00c853);
+            color: #000;
+            font-size: 16px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            margin-top: 16px;
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.6), 0 4px 15px rgba(0, 200, 83, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-play-game::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: all 0.5s;
+        }
+        .btn-play-game:active { transform: scale(0.97); }
+        .btn-play-game:active::before { left: 100%; }
+        .btn-play-game svg { width: 22px; height: 22px; fill: #000; }
+
+        /* ================== TAB CÀI ĐẶT ================== */
+        .copy-btn {
+            width: 100%;
+            height: 48px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 16px;
+        }
+        .copy-btn:active { transform: scale(0.97); background: rgba(255,255,255,0.2); }
+        .copy-btn svg { width: 18px; height: 18px; fill: #fff; }
+
+        .logout-btn {
+            width: 100%;
+            height: 48px;
+            border-radius: 16px;
+            background: rgba(255, 50, 50, 0.15);
+            border: 1px solid rgba(255, 50, 50, 0.4);
+            color: #ff4444;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 12px;
+        }
+        .logout-btn:active { transform: scale(0.97); background: rgba(255, 50, 50, 0.3); }
+        .logout-btn svg { width: 18px; height: 18px; fill: #ff4444; }
+
+        /* ================== THANH ĐIỀU HƯỚNG DƯỚI ================== */
+        .bottom-nav {
+            position: absolute;
+            bottom: 16px;
+            left: 20px;
+            right: 20px;
+            height: 64px;
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 6px 16px;
+            border-radius: 20px;
+            flex: 1;
+        }
+        .nav-item.active { color: #fff; }
+        .nav-item.active .nav-icon { fill: #00ff64; }
+        .nav-item.active span { color: #00ff64; font-weight: 700; }
+        .nav-item svg { width: 22px; height: 22px; fill: #666; transition: fill 0.3s; }
+        .nav-item span { font-size: 10px; font-weight: 600; transition: color 0.3s; }
+
+        /* ================== MÀN HÌNH SPLASH & LICENSE ================== */
+        
+        /* Màn hình Splash (Avatar nhấp nhô trên nền Conan, có dấu 3 chấm) */
+        #splashScreen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 300;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        #splashScreen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .splash-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.4);
+            box-shadow: 0 0 40px rgba(255,255,255,0.2);
+            animation: bounce 1.5s infinite ease-in-out;
+            margin-bottom: 20px;
+        }
+        .splash-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Dấu 3 chấm nổi lên từng chấm */
+        .splash-dots {
+            display: flex;
+            gap: 8px;
+        }
+        .splash-dots span {
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            animation: dotFade 1.5s infinite ease-in-out;
+            box-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+        .splash-dots span:nth-child(1) { animation-delay: 0s; }
+        .splash-dots span:nth-child(2) { animation-delay: 0.3s; }
+        .splash-dots span:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes dotFade {
+            0%, 100% { opacity: 0.2; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-8px); }
+        }
+
+        /* Màn hình License (chạy từ trên xuống) */
+        #licenseScreen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0,0,0,0.4);
+            transition: opacity 0.5s, visibility 0.5s;
+            overflow: hidden;
+        }
+        #licenseScreen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Ô VUÔNG LICENSE KEY (TỐI HƠN, ĐẬM MÀU HƠN) */
+        .license-box {
+            width: 88%;
+            max-width: 340px;
+            background-color: rgba(15, 15, 15, 0.9); /* Tối đậm */
+            border-radius: 28px;
+            padding: 26px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.2); /* Viền sáng */
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            animation: slideDown 0.6s ease-out forwards;
+        }
+        .license-box .logo {
+            width: 70px; height: 70px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            margin: 0 auto 14px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .license-box .logo img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* Chữ trắng sáng trên nền tối */
+        .license-box .title { 
+            font-size: 22px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.3px; 
+            color: #fff; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .license-box .subtitle { 
+            font-size: 10px; color: #aaa; 
+            font-weight: 700; 
+            letter-spacing: 1.2px; margin-bottom: 22px; text-transform: uppercase; 
+        }
+        
+        .license-box .hwid-row {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 11px; font-weight: 700; margin-bottom: 8px; padding: 0 2px;
+        }
+        .license-box .hwid-label { color: #fff; letter-spacing: 0.3px; }
+        .license-box .hwid-value { color: #00ff64; font-weight: 700; font-size: 10px; text-shadow: 0 0 8px rgba(0,255,100,0.4); }
+
+        .license-box .input-group {
+            display: flex; align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 14px; padding: 3px 3px 3px 10px;
+            margin-bottom: 20px; transition: all 0.2s;
+        }
+        .license-box .input-group:focus-within {
+            border-color: rgba(0, 255, 100, 0.5);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        .license-box .input-group svg { width: 16px; height: 16px; fill: #aaa; margin-right: 6px; flex-shrink: 0; }
+        .license-box .input-group input {
+            flex: 1; background: transparent; border: none; color: #fff;
+            font-size: 13px; outline: none; padding: 8px 0; min-width: 0;
+        }
+        .license-box .input-group input::placeholder { color: #888; }
+
+        .license-box .btn-paste {
+            background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(0, 0, 0, 0.08);
+            color: #1a1a1a; font-size: 11px; font-weight: 700; padding: 6px 10px;
+            cursor: pointer; display: flex; align-items: center; gap: 3px;
+            border-radius: 8px; transition: all 0.2s; flex-shrink: 0;
+        }
+        .license-box .btn-paste:active { transform: scale(0.96); }
+        .license-box .btn-paste svg { width: 12px; height: 12px; fill: #1a1a1a; margin: 0; }
+
+        .license-box .btn {
+            width: 100%; height: 46px; border-radius: 14px; font-size: 13px;
+            font-weight: 700; display: flex; align-items: center; justify-content: center;
+            gap: 6px; cursor: pointer; transition: all 0.2s ease; border: none; margin-bottom: 10px;
+            letter-spacing: 0.2px;
+        }
+        .license-box .btn-primary {
+            background-color: rgba(0, 255, 100, 0.2); color: #00ff64;
+            border: 1px solid rgba(0, 255, 100, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 255, 100, 0.1);
+        }
+        .license-box .btn-primary:active { transform: scale(0.98); }
+        .license-box .btn-outline {
+            background-color: rgba(255, 255, 255, 0.1); color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .license-box .btn-outline:active { transform: scale(0.98); }
+        .license-box .footer { font-size: 9px; color: #666; margin-top: 8px; letter-spacing: 0.3px; }
+
+        /* ================== THÔNG BÁO THÀNH CÔNG ================== */
+        #successOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            z-index: 400; display: flex; justify-content: center; align-items: center;
+            pointer-events: none;
+            opacity: 0; visibility: hidden; transition: all 0.4s;
+        }
+        #successOverlay.show { opacity: 1; visibility: visible; pointer-events: none; }
+        .success-box {
+            width: 80%; max-width: 320px;
+            background: rgba(30, 30, 30, 0.95); border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 28px; padding: 30px 20px; text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: scale(0.9); transition: transform 0.4s;
+            backdrop-filter: none;
+        }
+        #successOverlay.show .success-box { transform: scale(1); }
+        .success-icon {
+            width: 70px; height: 70px; border-radius: 50%;
+            border: 3px solid #00ff64; display: flex; justify-content: center;
+            align-items: center; margin: 0 auto 16px;
+            box-shadow: 0 0 30px rgba(0, 255, 100, 0.4);
+            background: rgba(0, 255, 100, 0.1);
+        }
+        .success-icon svg { width: 35px; height: 35px; fill: #00ff64; }
+        .success-box h3 { font-size: 16px; font-weight: 800; margin-bottom: 20px; color: #fff; letter-spacing: 1px; }
+        .success-info {
+            background: rgba(255,255,255,0.05); border-radius: 16px;
+            padding: 16px; margin-bottom: 20px; text-align: left;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .success-info div { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 8px; }
+        .success-info div:last-child { margin-bottom: 0; }
+        .success-info span:first-child { color: #aaa; }
+        .success-info span:last-child { font-weight: 700; color: #fff; }
+        .success-info .green { color: #00ff64; text-shadow: 0 0 8px rgba(0,255,100,0.3); }
+        
+        .progress-bar {
+            width: 100%; height: 6px; background: #333; border-radius: 3px;
+            overflow: hidden; margin-top: 15px;
+        }
+        .progress-fill {
+            height: 100%; width: 0%; background: #00ff64;
+            transition: width 1s linear;
+            box-shadow: 0 0 10px #00ff64;
+        }
+        .auto-text { font-size: 11px; color: #888; margin-top: 12px; }
+
+        /* Responsive cho màn hình nhỏ */
+        @media (max-width: 380px) {
+            .license-box { padding: 20px 16px; max-width: 300px; }
+            .license-box .title { font-size: 20px; }
+            .license-box .btn { font-size: 12px; height: 42px; }
+            .bottom-nav { left: 10px; right: 10px; }
+        }
+    </style>
+
+<style>
+#maintenanceOverlay{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.bulk-time-panel{margin-bottom:14px;padding:14px;border:1px solid rgba(99,102,241,.18);border-radius:18px;background:rgba(2,6,23,.5)}
+.create-key-large{min-height:260px}
+</style>
+</head>
+<body>
+
+    <!-- ẢNH NỀN -->
+    <div class="bg-image"></div>
+
+    <!-- ================== MÀN HÌNH SPLASH (AVATAR NHẤP NHÔ + DẤU 3 CHẤM) ================== -->
+    <div id="splashScreen">
+        <div class="splash-logo">
+           <img src="https://cdn.upanhlaylink.com/i/vy3olzFD.png" alt="logo">
+        </div>
+        <div class="splash-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- ================== MÀN HÌNH NHẬP KEY ================== -->
+    <div id="licenseScreen" class="hidden">
+        <div class="license-box">
+            <div class="logo">
+                <img src="https://cdn.upanhlaylink.com/i/vy3olzFD.png" alt="logokey" />
+            </div>
+            <div class="title">Auxo Cheat</div>
+            <div class="subtitle">AUXO CHEAT VN 2026 - 2027</div>
+            
+            <div class="hwid-row">
+                <span class="hwid-label">LICENSE KEY</span>
+                <span class="hwid-value" id="licenseHwid">HWID: ...</span>
+            </div>
+
+            <div class="input-group">
+                <svg viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+                <input type="text" id="keyInput" placeholder="Dán hoặc nhập key...">
+                <button class="btn-paste" onclick="pasteKey()">
+                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                    Dán
+                </button>
+            </div>
+
+            <button class="btn btn-primary" onclick="authenticate()">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg>
+                Xác Thực & Mở Khóa
+            </button>
+
+            <button class="btn btn-outline" onclick="openLink('https://t.me/your_channel')">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+                Nhận Key Miễn Phí Tại Telegram
+            </button>
+
+            <div class="footer">BY : HuyTrần • VIP Ultra • 2026 - 2027</div>
+        </div>
+    </div>
+
+    <!-- ================== THÔNG BÁO THÀNH CÔNG ================== -->
+    <div id="successOverlay">
+        <div class="success-box">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <h3>ĐÃ NHẬP KEY THÀNH CÔNG</h3>
+            <div class="success-info">
+                <div><span>Key:</span> <span id="successKey" class="green">---</span></div>
+                <div><span>Thời Hạn:</span> <span id="successDuration">---</span></div>
+                <div><span>Ngày Hết Hạn:</span> <span id="successExpiry">---</span></div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="successProgress"></div></div>
+            <div class="auto-text">Đang vào Menu trong <span id="countdownText">2</span>s...</div>
+        </div>
+    </div>
+
+    <!-- ================== GIAO DIỆN CHÍNH ================== -->
+    <div class="app-container" id="mainApp" style="display: none;">
+        
+        <!-- HEADER -->
+        <div class="app-header">
+            <div class="header-title">Auxo Cheat</div>
+            <div class="header-badge">ĐÃ XÁC THỰC</div>
+        </div>
+
+        <!-- NỘI DUNG -->
+        <div class="app-content">
+            
+            <!-- ===== TAB TRANG CHỦ ===== -->
+            <div id="tab-home" class="tab-page active">
+                <div class="card">
+                    <div class="card-title">LICENSE ĐANG HOẠT ĐỘNG</div>
+                    <div class="info-row">
+                        <span class="info-label">Key</span>
+                        <span class="info-value green" id="homeKey">---</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Thời Hạn</span>
+                        <span class="info-value" id="homeDuration">---</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Còn Lại</span>
+                        <span class="info-value" id="homeTimeLeft">00:00:00</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Hết Hạn Vào Lúc</span>
+                        <span class="info-value" id="homeExpiry">---</span>
+                    </div>
+                </div>
+                <button class="btn-telegram" onclick="openLink('https://t.me/your_channel')">
+                    <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+                    Tham Gia Cộng Đồng Telegram
+                </button>
+            </div>
+
+            <!-- ===== TAB ỨNG DỤNG ===== -->
+            <div id="tab-apps" class="tab-page">
+                <!-- THANH TÌM KIẾM -->
+                <div class="search-bar">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    <input type="text" placeholder="Tìm ứng dụng...">
+                </div>
+
+                <!-- Ô VUÔNG LỚN CHỨA TẤT CẢ -->
+                <div class="feature-box">
+                    <!-- Tiêu đề Danh Sách Game Vip -->
+                    <div class="game-list-title">Danh Sách Game Vip</div>
+
+                    <!-- Chọn Game -->
+                    <div class="game-selector">
+                        <div class="game-item active" id="gameFF" onclick="selectGame('ff')">
+                            <img class="game-icon" src="https://cdn.upanhlaylink.com/i/7danHvRk.png" alt="ff">
+                            <div class="game-name">Free Fire</div>
+                            <div class="game-pkg">com.dts.freefireth</div>
+                        </div>
+                        <div class="game-item" id="gameFFMax" onclick="selectGame('ffmax')">
+                            <img class="game-icon" src="https://cdn.upanhlaylink.com/i/KDpDYYgW.jpeg" alt="IMG_7906.jpeg"> 
+                            <div class="game-name">Free Fire Max</div>
+                            <div class="game-pkg">com.dts.freefiremax</div>
+                        </div>
+                    </div>
+
+                    <!-- Tên game đang chọn ở giữa -->
+                    <div class="selected-game-title" id="selectedGameTitle">FREE FIRE</div>
+
+                    <!-- Danh sách chức năng -->
+                    <div class="feature-list" id="featureList">
+                        <!-- Render bằng JS -->
+                    </div>
+                </div>
+
+                <!-- Nút vào game chói -->
+                <button class="btn-play-game" id="btnPlay" onclick="launchGame()">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    VÀO GAME NGAY
+                </button>
+            </div>
+
+            <!-- ===== TAB CÀI ĐẶT ===== -->
+            <div id="tab-settings" class="tab-page">
+                <!-- Ô 1: Thông tin thiết bị -->
+                <div class="card">
+                    <div class="card-title">THÔNG TIN THIẾT BỊ</div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                            Thiết Bị
+                        </span>
+                        <span class="info-value" id="deviceName">iPhone 11</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            Phiên Bản
+                        </span>
+                        <span class="info-value" id="iosVersion">17.7</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                            HWID
+                        </span>
+                        <span class="info-value" id="hwidValue">HT-2882h72b</span>
+                    </div>
+                </div>
+
+                <!-- Ô 2: Thông tin bản quyền -->
+                <div class="card">
+                    <div class="card-title">THÔNG TIN BẢN QUYỀN</div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+                            Key
+                        </span>
+                        <span class="info-value green" id="settingKey">---</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            Thời Hạn
+                        </span>
+                        <span class="info-value" id="deviceDuration">---</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+                            Hết Hạn
+                        </span>
+                        <span class="info-value" id="settingExpiry">---</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            Còn Lại
+                        </span>
+                        <span class="info-value" id="settingTimeLeft">00:00:00</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyHwid()">
+                        <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        Sao Chép HWID Thiết Bị
+                    </button>
+                    <button class="logout-btn" onclick="logout()">
+                        <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+                        Đăng Xuất / Đổi Key Mới
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- THANH ĐIỀU HƯỚNG -->
+        <div class="bottom-nav">
+            <div class="nav-item active" onclick="switchTab('home', this)">
+                <svg class="nav-icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                <span>Trang chủ</span>
+            </div>
+            <div class="nav-item" onclick="switchTab('apps', this)">
+                <svg class="nav-icon" viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+                <span>Ứng dụng</span>
+            </div>
+            <div class="nav-item" onclick="switchTab('settings', this)">
+                <svg class="nav-icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                <span>Cài đặt</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+    <!-- ================== SERVER MAINTENANCE ================== -->
+    <div id="maintenanceOverlay" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.88);backdrop-filter:blur(18px);align-items:center;justify-content:center;padding:24px;">
+        <div style="width:100%;max-width:340px;background:rgba(18,18,18,.96);border:1px solid rgba(255,255,255,.16);border-radius:28px;padding:30px 22px;text-align:center;box-shadow:0 20px 70px rgba(0,0,0,.65);">
+            <div style="width:64px;height:64px;border-radius:20px;margin:0 auto 16px;background:rgba(255,190,0,.12);border:1px solid rgba(255,190,0,.3);display:flex;align-items:center;justify-content:center;font-size:28px;">🛠️</div>
+            <div style="font-size:21px;font-weight:800;margin-bottom:8px;">ĐANG BẢO TRÌ</div>
+            <div id="maintenanceMessage" style="font-size:13px;color:#aaa;line-height:1.55;">Ứng dụng đang được bảo trì. Vui lòng quay lại sau.</div>
+        </div>
+    </div>
+    <script>
+        // ================== LICENSE SERVER / FIREBASE ==================
+        const FIREBASE_CONFIG = {
+            apiKey: "AIzaSyCdfLwm_AQTB613W65tDRguIXTOwY1YkwY",
+            authDomain: "ggmouse-3aaf1.firebaseapp.com",
+            databaseURL: "https://ggmouse-3aaf1-default-rtdb.firebaseio.com",
+            projectId: "ggmouse-3aaf1",
+            storageBucket: "ggmouse-3aaf1.firebasestorage.app",
+            messagingSenderId: "240594328569",
+            appId: "1:240594328569:web:940e842b6386af666fbb28"
+        };
+        firebase.initializeApp(FIREBASE_CONFIG);
+        const licenseDb = firebase.database();
+        const licenseRef = licenseDb.ref('serverData');
+
+        let licenseKey = '';
+        let expiryDate = null;
+        let timeLeftInterval = null;
+        let selectedGame = 'ff';
+        let currentHWID = '';
+        let currentDevice = 'iPhone';
+        let currentIOS = 'iOS';
+        let latestServerData = null;
+        let licenseBusy = false;
+
+        function nativeStore(action, key='') {
+            try {
+                if (window.webkit?.messageHandlers?.licenseStore) {
+                    window.webkit.messageHandlers.licenseStore.postMessage({action, key});
+                    return;
+                }
+                if(action==='save' && key) localStorage.setItem('auxo_ipa_license_key', key);
+                if(action==='clear') localStorage.removeItem('auxo_ipa_license_key');
+            } catch(e) {}
+        }
+
+        function isNativeIOSApp(){
+            return !!(window.webkit?.messageHandlers?.licenseStore);
+        }
+        function isIPAApp(){
+            return isNativeIOSApp() || /Capacitor/i.test(navigator.userAgent||'') || /^(capacitor|file):$/i.test(location.protocol||'');
+        }
+        function getIPAHWID(){
+            const k='auxo_hwid_v2';
+            const valid=/^AX[A-Z0-9]{13}$/;
+            try{
+                const old=String(localStorage.getItem(k)||'').toUpperCase();
+                if(valid.test(old)) return old;
+                const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                let id='AX';
+                if(window.crypto?.getRandomValues){
+                    const a=new Uint8Array(13); window.crypto.getRandomValues(a);
+                    for(let i=0;i<a.length;i++) id+=chars[a[i]%chars.length];
+                }else for(let i=0;i<13;i++) id+=chars[Math.floor(Math.random()*chars.length)];
+                localStorage.setItem(k,id); return id;
+            }catch(e){ return 'AX'+Math.random().toString(36).slice(2).toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,13).padEnd(13,'0'); }
+        }
+        function detectIOSVersion(){
+            const ua=navigator.userAgent||'';
+            const m=ua.match(/OS (\d+)[._](\d+)(?:[._](\d+))?/i);
+            return m ? `iOS ${m[1]}.${m[2]}${m[3]?'.'+m[3]:''}` : 'iOS';
+        }
+        function detectWebDevice(){
+            // Ưu tiên native bridge nếu IPA/native plugin có cung cấp model thật.
+            if(window.__AUXO_NATIVE_DEVICE_MODEL) return window.__AUXO_NATIVE_DEVICE_MODEL;
+            const ua=navigator.userAgent||'';
+            if(/iPad/i.test(ua)) return 'iPad';
+            if(/iPod/i.test(ua)) return 'iPod';
+            if(!/iPhone/i.test(ua)) return 'iOS Device';
+
+            // WebKit không công khai mã máy (iPhone12,1...), nên dùng kích thước CSS + scale
+            // để nhận diện các model có cấu hình hiển thị đặc trưng. Một số model dùng chung
+            // kích thước nên fallback theo nhóm thay vì khẳng định sai model.
+            const w=Math.min(screen.width,screen.height), h=Math.max(screen.width,screen.height), dpr=window.devicePixelRatio||1;
+            const key=`${w}x${h}@${dpr}`;
+            const map={
+                '320x568@2':'iPhone SE (1st gen) / 5s / 5c / 5',
+                '375x667@2':'iPhone 6 / 6s / 7 / 8 / SE (2nd/3rd gen)',
+                '414x736@3':'iPhone 6 Plus / 6s Plus / 7 Plus / 8 Plus',
+                '375x812@3':'iPhone X / XS / 11 Pro',
+                '414x896@2':'iPhone XR / 11',
+                '414x896@3':'iPhone XS Max / 11 Pro Max',
+                '390x844@3':'iPhone 12 / 12 Pro / 13 / 13 Pro / 14',
+                '428x926@3':'iPhone 12 Pro Max / 13 Pro Max / 14 Plus',
+                '393x852@3':'iPhone 14 Pro / 15 / 15 Pro',
+                '430x932@3':'iPhone 14 Pro Max / 15 Plus / 15 Pro Max',
+                '402x874@3':'iPhone 16 / 16 Pro',
+                '440x956@3':'iPhone 16 Plus / 16 Pro Max'
+            };
+            return map[key] || 'iPhone';
+        }
+
+        function detectNativeDeviceBridge(){
+            try{
+                // Hợp đồng bridge: native gọi lại window.setNativeDeviceInfo(model, ios, machineId, hwid).
+                if(window.webkit?.messageHandlers?.deviceInfo){
+                    window.webkit.messageHandlers.deviceInfo.postMessage({action:'getInfo'});
+                    return true;
+                }
+                if(window.Capacitor?.Plugins?.Device?.getInfo){
+                    window.Capacitor.Plugins.Device.getInfo().then(info=>{
+                        if(info?.model) window.setNativeDeviceInfo(info.model, detectIOSVersion(), info.modelIdentifier||'', '');
+                    }).catch(()=>{});
+                    return true;
+                }
+            }catch(e){}
+            return false;
+        }
+
+        function makePreviewHWID(){
+            // Chỉ dùng khi mở HTML trực tiếp trên Web để xem trước.
+            // Không lưu localStorage/cookie và không gửi HWID preview lên server.
+            try{
+                if(window.crypto?.randomUUID) return 'WEB-' + window.crypto.randomUUID().replace(/-/g,'').slice(0,16).toUpperCase();
+                const a=new Uint8Array(8);
+                if(window.crypto?.getRandomValues) window.crypto.getRandomValues(a);
+                return 'WEB-' + Array.from(a).map(x=>x.toString(16).padStart(2,'0')).join('').toUpperCase();
+            }catch(e){
+                return 'WEB-' + Math.random().toString(36).slice(2,18).toUpperCase();
+            }
+        }
+
+        function updateDeviceUI(){
+            const d=document.getElementById('deviceName'), i=document.getElementById('iosVersion'), h=document.getElementById('hwidValue'), lh=document.getElementById('licenseHwid');
+            if(d) d.innerText=currentDevice;
+            if(i) i.innerText=currentIOS;
+            if(h) h.innerText=currentHWID || 'Đang nhận diện...';
+            if(lh) lh.innerText='HWID: '+(currentHWID || 'Đang nhận diện...');
+        }
+
+        window.setNativeDeviceInfo = function(modelName, iosVersion, machineIdentifier, hwid) {
+            currentDevice = modelName || currentDevice || 'iPhone';
+            currentIOS = iosVersion || currentIOS || detectIOSVersion();
+            // Trong IPA: HWID phải do native iOS cung cấp; không dùng HWID ngẫu nhiên của Web.
+            currentHWID = hwid || ('IOS-' + (machineIdentifier || 'UNKNOWN').replace(/[^A-Za-z0-9]/g,'').slice(-16).toUpperCase());
+            updateDeviceUI();
+        };
+
+        window.setNativeLicenseKey = function(key) {
+            const saved=(key||'').trim();
+            if(!saved) return;
+            licenseKey=saved;
+            const input=document.getElementById('keyInput'); if(input) input.value=saved;
+            validateStoredLicense();
+        };
+
+        function showMaintenance(message='Ứng dụng đang được bảo trì. Vui lòng quay lại sau.') {
+            const ov=document.getElementById('maintenanceOverlay');
+            const msg=document.getElementById('maintenanceMessage');
+            if(msg) msg.innerText=message;
+            if(ov) ov.style.display='flex';
+            if(timeLeftInterval) clearInterval(timeLeftInterval);
+            document.getElementById('mainApp').style.display='none';
+            document.getElementById('licenseScreen').classList.add('hidden');
+        }
+        function hideMaintenance(){ const ov=document.getElementById('maintenanceOverlay'); if(ov) ov.style.display='none'; }
+
+        function formatDate(ms){
+            if(!ms) return '---';
+            const d=new Date(ms);
+            const p=n=>String(n).padStart(2,'0');
+            return `${p(d.getDate())}/${p(d.getMonth()+1)}/${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+        }
+        function durationMsFromKey(k){
+            if(typeof k.remainingMs==='number' && k.remainingMs>=0) return k.remainingMs;
+            const m=String(k.duration||'1 Ngày').match(/(\d+)/); const n=m?parseInt(m[1]):1;
+            return /Giờ/i.test(k.duration||'') ? n*3600000 : n*86400000;
+        }
+        function getCreatedKey(key){ return (latestServerData?.createdKeys||[]).find(k=>k.id===key); }
+        function getActiveKey(key){ return (latestServerData?.activeKeys||[]).find(k=>k.id===key); }
+
+        function updateAppLicenseUI(k, active){
+            const remaining=active?.expiresAt ? Math.max(0, Number(active.expiresAt)-Date.now()) : durationMsFromKey(k);
+            expiryDate=active?.expiresAt ? new Date(Number(active.expiresAt)) : null;
+            document.getElementById('homeKey').innerText=licenseKey;
+            document.getElementById('settingKey').innerText=licenseKey;
+            document.getElementById('homeExpiry').innerText=active?.expiresAt ? formatDate(Number(active.expiresAt)) : 'Chưa kích hoạt';
+            document.getElementById('settingExpiry').innerText=active?.expiresAt ? formatDate(Number(active.expiresAt)) : 'Chưa kích hoạt';
+            const dur=k.duration || '---';
+            const sd=document.getElementById('successDuration'); if(sd) sd.innerText=dur;
+            const hd=document.getElementById('homeDuration'); if(hd) hd.innerText=dur;
+            const dd=document.getElementById('deviceDuration'); if(dd) dd.innerText=dur;
+            document.querySelectorAll('.info-row').forEach(row=>{ const lab=row.querySelector('.info-label'); if(lab && lab.textContent.trim()==='Thời Hạn'){ const val=row.querySelector('.info-value'); if(val) val.innerText=dur; }});
+            startTimer();
+            return remaining;
+        }
+
+        function lockOut(reason, clearSaved=true){
+            if(timeLeftInterval) clearInterval(timeLeftInterval);
+            stopLicenseHeartbeat();
+            licenseBusy=false;
+            if(clearSaved) nativeStore('clear');
+            licenseKey=''; expiryDate=null;
+            document.getElementById('mainApp').style.display='none';
+            document.getElementById('licenseScreen').classList.remove('hidden');
+            document.getElementById('keyInput').value='';
+            alert(reason);
+        }
+
+        let heartbeatInterval=null;
+        const HEARTBEAT_MS=30000;
+        const REBIND_GRACE_MS=90000;
+        async function sendLicenseHeartbeat(){
+            if(!isIPAApp() || !licenseKey || !currentHWID) return;
+            try{
+                const snap=await licenseRef.once('value'); const data=snap.val()||{};
+                const id=String(licenseKey).trim().toUpperCase();
+                const a=(data.activeKeys||[]).find(x=>String(x.id||'').trim().toUpperCase()===id && String(x.hwid||'')===String(currentHWID));
+                if(!a) return;
+                const now=Date.now(), remaining=Math.max(0,Number(a.expiresAt||now)-now); if(remaining<=0) return;
+                await licenseRef.update({
+                    activeKeys:(data.activeKeys||[]).map(x=>String(x.id||'').trim().toUpperCase()===id?{...x,lastSeenAt:now,lastHeartbeatAt:now,remainingMs:remaining}:x),
+                    createdKeys:(data.createdKeys||[]).map(x=>String(x.id||'').trim().toUpperCase()===id?{...x,lastSeenAt:now,lastHeartbeatAt:now,remainingMs:remaining}:x)
+                });
+            }catch(e){ console.warn('heartbeat',e); }
+        }
+        function startLicenseHeartbeat(){ stopLicenseHeartbeat(); sendLicenseHeartbeat(); heartbeatInterval=setInterval(sendLicenseHeartbeat,HEARTBEAT_MS); }
+        function stopLicenseHeartbeat(){ if(heartbeatInterval){clearInterval(heartbeatInterval);heartbeatInterval=null;} }
+
+        async function activateOnServer(key){
+            if(!currentHWID){ alert('Chưa nhận được HWID thiết bị. Hãy mở lại app.'); return false; }
+            const snap=await licenseRef.once('value');
+            const data=snap.val()||{};
+            if(data.settings?.maintenance){ showMaintenance(data.settings.message); return false; }
+            const created=(data.createdKeys||[]).find(k=>k.id===key);
+            if(!created){ alert('Key không tồn tại trên server.'); return false; }
+            if(created.status==='Bị khóa'){ alert('Key này đã bị khóa.'); return false; }
+            const existing=(data.activeKeys||[]).find(k=>k.id===key);
+            if(existing && existing.hwid && existing.hwid!==currentHWID){ alert('Key đã được liên kết với thiết bị khác.'); return false; }
+            const remaining=Number(created.remainingMs ?? durationMsFromKey(created));
+            if(remaining<=0){ alert('Key đã hết thời gian.'); return false; }
+            const now=Date.now();
+            const active={id:key, hwid:currentHWID, activatedAt:now, expiresAt:now+remaining, duration:created.duration||'1 Ngày'};
+            const newCreated=(data.createdKeys||[]).map(k=>k.id===key?{...k,status:'Đã kích hoạt',hwid:currentHWID,activatedAt:now,expiresAt:active.expiresAt,remainingMs:remaining}:k);
+            const newActive=(data.activeKeys||[]).filter(k=>k.id!==key).concat(active);
+            await licenseRef.update({createdKeys:newCreated,activeKeys:newActive});
+            return true;
+        }
+
+        async function validateStoredLicense(){
+            if(licenseBusy || !licenseKey || !currentHWID) return;
+            licenseBusy=true;
+            try{
+                const snap=await licenseRef.once('value');
+                const data=snap.val()||{}; latestServerData=data;
+
+                if(data.settings?.maintenance){ showMaintenance(data.settings.message); return; }
+                hideMaintenance();
+
+                const key=String(licenseKey).trim().toUpperCase();
+                const k=(data.createdKeys||[]).find(x=>String(x.id||'').trim().toUpperCase()===key);
+                const a=(data.activeKeys||[]).find(x=>String(x.id||'').trim().toUpperCase()===key);
+
+                if(!k){ lockOut('Key không tồn tại trên server.'); return; }
+                if(k.status==='Bị khóa'){ lockOut('Key đã bị khóa trên server.'); return; }
+
+                // Web preview chỉ để xem giao diện; không bind HWID preview lên server.
+                if(!isIPAApp()){
+                    licenseKey=key;
+                    const previewExpiry=Date.now()+Math.min(Number(k.remainingMs||durationMsFromKey(k)),3600000);
+                    expiryDate=new Date(previewExpiry);
+                    enterMainApp(formatDate(previewExpiry),k.duration||'Preview',true);
+                    return;
+                }
+
+                if(a && a.hwid && a.hwid!==currentHWID){
+                    lockOut('Key đã được liên kết với thiết bị khác.');
+                    return;
+                }
+
+                // Nếu createdKeys đã có HWID của đúng máy nhưng activeKeys thiếu, tự đồng bộ lại.
+                if(k.hwid && k.hwid===currentHWID && !a){
+                    const remaining=Math.max(0,Number(k.expiresAt||Date.now())-Date.now()) || Number(k.remainingMs||durationMsFromKey(k));
+                    if(remaining<=0){ lockOut('Key đã hết thời gian.'); return; }
+                    const active={id:key,hwid:currentHWID,activatedAt:Number(k.activatedAt||Date.now()),expiresAt:Date.now()+remaining,duration:k.duration||'1 Ngày'};
+                    const newCreated=(data.createdKeys||[]).map(x=>String(x.id||'').trim().toUpperCase()===key?{...x,status:'Đã kích hoạt',hwid:currentHWID,activatedAt:active.activatedAt,expiresAt:active.expiresAt,remainingMs:remaining}:x);
+                    const newActive=(data.activeKeys||[]).filter(x=>String(x.id||'').trim().toUpperCase()!==key).concat(active);
+                    await licenseRef.update({createdKeys:newCreated,activeKeys:newActive});
+                    licenseKey=key;
+                    nativeStore('save',key);
+                    expiryDate=new Date(active.expiresAt);
+                    enterMainApp(formatDate(active.expiresAt),k.duration||'');
+                    return;
+                }
+
+                if(!a){
+                    lockOut('Key chưa được kích hoạt trên thiết bị này.');
+                    return;
+                }
+
+                if(Number(a.expiresAt)<=Date.now()){
+                    lockOut('Key đã hết hạn.');
+                    return;
+                }
+
+                licenseKey=key;
+                nativeStore('save',key);
+                expiryDate=new Date(Number(a.expiresAt));
+                enterMainApp(formatDate(Number(a.expiresAt)),k.duration||'');
+            }catch(e){
+                console.error(e);
+                alert('Không thể kết nối Server Key. Vui lòng kiểm tra mạng.');
+            }finally{
+                licenseBusy=false;
+            }
+        }
+
+        async function authenticate(){
+            const input=document.getElementById('keyInput');
+            const key=String(input?.value||'').trim().toUpperCase();
+            if(!key){ alert('Vui lòng nhập License Key!'); return; }
+            if(!currentHWID) generateHwid();
+            if(!currentHWID){ alert('Đang nhận dạng thiết bị, vui lòng thử lại sau.'); return; }
+            if(licenseBusy) return;
+
+            licenseBusy=true;
+            try{
+                const snap=await licenseRef.once('value');
+                const data=snap.val()||{}; latestServerData=data;
+
+                if(data.settings?.maintenance){ showMaintenance(data.settings.message); return; }
+                hideMaintenance();
+
+                const created=(data.createdKeys||[]).find(k=>String(k.id||'').trim().toUpperCase()===key);
+                if(!created){ alert('Key không đúng hoặc không tồn tại trên server.'); return; }
+                if(created.status==='Bị khóa'){ alert('Key đã bị Ban/Khóa.'); return; }
+
+                // Web preview: cho xem luồng nhập key nhưng tuyệt đối không bind HWID WEB lên server.
+                if(!isIPAApp()){
+                    licenseKey=key;
+                    const previewRemaining=Math.min(Number(created.remainingMs||durationMsFromKey(created)),3600000);
+                    expiryDate=new Date(Date.now()+Math.max(1000,previewRemaining));
+                    enterMainApp(formatDate(expiryDate.getTime()),created.duration||'Preview',true);
+                    return;
+                }
+
+                let existing=(data.activeKeys||[]).find(k=>String(k.id||'').trim().toUpperCase()===key);
+                if(existing?.hwid && existing.hwid!==currentHWID){
+                    const lastSeen=Number(existing.lastSeenAt||existing.activatedAt||0);
+                    if(!lastSeen || Date.now()-lastSeen<REBIND_GRACE_MS){ alert('Key đang được sử dụng trên thiết bị khác. Vui lòng chờ thiết bị cũ ngừng kết nối.'); return; }
+                    const checkpoint=lastSeen;
+                    const remaining=Math.max(0,Number(existing.expiresAt||checkpoint)-checkpoint);
+                    if(remaining<=0){ alert('Key đã hết thời gian.'); return; }
+                    const createdReset=(data.createdKeys||[]).map(k=>String(k.id||'').trim().toUpperCase()===key?{...k,remainingMs:remaining,hwid:null,activatedAt:null,expiresAt:null,lastSeenAt:null,lastHeartbeatAt:null,status:'Chưa kích hoạt'}:k);
+                    const activeReset=(data.activeKeys||[]).filter(k=>String(k.id||'').trim().toUpperCase()!==key);
+                    await licenseRef.update({createdKeys:createdReset,activeKeys:activeReset});
+                    data.createdKeys=createdReset; data.activeKeys=activeReset; existing=null;
+                }
+
+                // Nếu key đã bind đúng máy thì vào thẳng.
+                if(existing?.hwid===currentHWID && Number(existing.expiresAt)>Date.now()){
+                    licenseKey=key;
+                    nativeStore('save',key);
+                    expiryDate=new Date(Number(existing.expiresAt));
+                    enterMainApp(formatDate(Number(existing.expiresAt)),created.duration||'',true);
+                    return;
+                }
+
+                const remaining=Number(created.remainingMs ?? durationMsFromKey(created));
+                if(remaining<=0){ alert('Key đã hết thời gian.'); return; }
+
+                const now=Date.now();
+                const expires=now+remaining;
+                const active={
+                    id:key,
+                    hwid:currentHWID,
+                    activatedAt:now,
+                    expiresAt:expires,
+                    duration:created.duration||'1 Ngày',
+                    device:currentDevice,
+                    ios:currentIOS
+                };
+
+                // Một key = một HWID. HWID được tạo/bind ngay lúc key được kích hoạt trên IPA.
+                const newCreated=(data.createdKeys||[]).map(k=>
+                    String(k.id||'').trim().toUpperCase()===key
+                    ? {...k,status:'Đã kích hoạt',hwid:currentHWID,activatedAt:now,expiresAt:expires,remainingMs:remaining,device:currentDevice,ios:currentIOS}
+                    : k
+                );
+                const newActive=(data.activeKeys||[])
+                    .filter(k=>String(k.id||'').trim().toUpperCase()!==key)
+                    .concat(active);
+
+                await licenseRef.update({createdKeys:newCreated,activeKeys:newActive});
+
+                licenseKey=key;
+                nativeStore('save',key);
+                expiryDate=new Date(expires);
+                enterMainApp(formatDate(expires),created.duration||'',true);
+            }catch(e){
+                console.error(e);
+                alert('Lỗi kết nối Server Key.');
+            }finally{
+                licenseBusy=false;
+            }
+        }
+
+        let successTimer=null;
+        function showKeySuccess(formattedExpiry,duration){
+            const ov=document.getElementById('successOverlay'); if(!ov) return;
+            const keyEl=document.getElementById('successKey'); if(keyEl) keyEl.innerText=licenseKey||'---';
+            const durEl=document.getElementById('successDuration'); if(durEl) durEl.innerText=duration||'---';
+            const expEl=document.getElementById('successExpiry'); if(expEl) expEl.innerText=formattedExpiry||'---';
+            const count=document.getElementById('countdownText');
+            const fill=document.getElementById('successProgress');
+            if(successTimer) clearTimeout(successTimer);
+            if(count) count.innerText='2';
+            if(fill){ fill.style.transition='none'; fill.style.width='0%'; requestAnimationFrame(()=>{ fill.style.transition='width 2s linear'; fill.style.width='100%'; }); }
+            ov.classList.add('show');
+            successTimer=setTimeout(()=>{ ov.classList.remove('show'); successTimer=null; },2000);
+        }
+        function enterMainApp(formattedExpiry,duration,showSuccess=false){
+            hideMaintenance(); document.getElementById('licenseScreen').classList.add('hidden'); document.getElementById('mainApp').style.display='flex';
+            document.getElementById('homeKey').innerText=licenseKey; document.getElementById('settingKey').innerText=licenseKey;
+            document.getElementById('homeExpiry').innerText=formattedExpiry; document.getElementById('settingExpiry').innerText=formattedExpiry;
+            const sd=document.getElementById('successDuration'); if(sd) sd.innerText=duration||'---';
+            const hd=document.getElementById('homeDuration'); if(hd) hd.innerText=duration||'---';
+            const dd=document.getElementById('deviceDuration'); if(dd) dd.innerText=duration||'---';
+            startTimer(); startLicenseHeartbeat(); if(showSuccess) showKeySuccess(formattedExpiry,duration);
+        }
+
+        function startTimer(){
+            if(timeLeftInterval) clearInterval(timeLeftInterval);
+            timeLeftInterval=setInterval(()=>{
+                const diff=expiryDate?expiryDate-Date.now():0;
+                if(diff<=0){ clearInterval(timeLeftInterval); lockOut('Key đã hết thời gian.',true); return; }
+                const h=Math.floor(diff/3600000), m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+                const str=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+                const a=document.getElementById('homeTimeLeft'), b=document.getElementById('settingTimeLeft'); if(a)a.innerText=str;if(b)b.innerText=str;
+            },1000);
+        }
+
+        setTimeout(()=>licenseRef.on('value', snap=>{
+            const data=snap.val()||{}; latestServerData=data;
+            if(data.settings?.maintenance){ if(licenseKey) showMaintenance(data.settings.message); else showMaintenance(data.settings.message); return; }
+            hideMaintenance();
+            if(licenseKey && currentHWID && isIPAApp()){
+                const k=(data.createdKeys||[]).find(x=>String(x.id||'').trim().toUpperCase()===String(licenseKey).trim().toUpperCase());
+                const a=(data.activeKeys||[]).find(x=>String(x.id||'').trim().toUpperCase()===String(licenseKey).trim().toUpperCase());
+                if(!k || k.status==='Bị khóa' || !a || a.hwid!==currentHWID){ lockOut(!k?'Key đã bị xóa khỏi server.':(k.status==='Bị khóa'?'Key đã bị khóa trên server.':'Key đã được Reset khỏi thiết bị này.')); return; }
+                if(Number(a.expiresAt)<=Date.now()){ lockOut('Key đã hết thời gian.'); return; }
+                expiryDate=new Date(Number(a.expiresAt));
+                if(document.getElementById('mainApp').style.display==='flex') startTimer();
+            }
+        }), 1200);
+
+        let features = {
+            ff: [
+                { id: 'aim_drag', name: 'Aim Drag', desc: 'Hỗ trợ kéo tâm ghim đầu tự động', 
+                  icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v3H8v2h3v3h2v-3h3v-2h-3V7z', active: false },
+                { id: 'aim_body', name: 'Aim Body', desc: 'Khóa tâm trúng thân cực chuẩn', 
+                  icon: 'M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z', active: false },
+                { id: 'aim_neck', name: 'Aim Neck', desc: 'Khóa tâm vùng cổ và ngực trên', 
+                  icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z', active: false },
+                { id: 'aim_silent', name: 'Aim Silent', desc: 'Đạn tự tìm mục tiêu không cần ngắm', 
+                  icon: 'M7 2v11h3v9l7-12h-4l4-8z', active: false },
+                { id: 'esp', name: 'Esp', desc: 'Định vị và quét toàn bộ vị trí địch', 
+                  icon: 'M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z', active: false },
+                { id: 'box', name: 'Box', desc: 'Khung hộp 2D hiển thị quanh đối tượng', 
+                  icon: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z', active: false },
+                { id: 'line', name: 'Line', desc: 'Đường kẻ chỉ hướng địch', 
+                  icon: 'M4 11h5V5H4v6zm0 7h5v-6H4v6zm7 0h5v-6h-5v6zm7 0h5v-6h-5v6z', active: false }
+            ],
+            ffmax: [
+                { id: 'aim_drag_max', name: 'Aim Drag', desc: 'Hỗ trợ kéo tâm ghim đầu tự động (Max)', 
+                  icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v3H8v2h3v3h2v-3h3v-2h-3V7z', active: false },
+                { id: 'aim_body_max', name: 'Aim Body', desc: 'Khóa tâm trúng thân cực chuẩn (Max)', 
+                  icon: 'M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z', active: false },
+                { id: 'aim_neck_max', name: 'Aim Neck', desc: 'Khóa tâm vùng cổ và ngực trên (Max)', 
+                  icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z', active: false },
+                { id: 'aim_silent_max', name: 'Aim Silent', desc: 'Đạn tự tìm mục tiêu không cần ngắm (Max)', 
+                  icon: 'M7 2v11h3v9l7-12h-4l4-8z', active: false },
+                { id: 'esp_max', name: 'Esp', desc: 'Định vị và quét toàn bộ vị trí địch (Max)', 
+                  icon: 'M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z', active: false },
+                { id: 'box_max', name: 'Box', desc: 'Khung hộp 2D hiển thị quanh đối tượng (Max)', 
+                  icon: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z', active: false },
+                { id: 'line_max', name: 'Line', desc: 'Đường kẻ chỉ hướng địch (Max)', 
+                  icon: 'M4 11h5V5H4v6zm0 7h5v-6H4v6zm7 0h5v-6h-5v6zm7 0h5v-6h-5v6z', active: false }
+            ]
+        };
+
+
+        // ================== KHỞI TẠO ==================
+        document.addEventListener('DOMContentLoaded',()=>{
+            renderFeatures();
+
+            if(isIPAApp() && !currentHWID){
+                currentDevice=detectWebDevice();
+                currentIOS=detectIOSVersion();
+                currentHWID=getIPAHWID();
+                detectNativeDeviceBridge();
+                updateDeviceUI();
+                const saved=String(localStorage.getItem('auxo_ipa_license_key')||'').trim();
+                if(saved){
+                    licenseKey=saved;
+                    const input=document.getElementById('keyInput'); if(input) input.value=saved;
+                }
+            } else if(!isIPAApp() && !currentHWID){
+                currentDevice='Web Preview';
+                currentIOS='Browser';
+                currentHWID=makePreviewHWID();
+                updateDeviceUI();
+            }
+
+            // Render AUXO immediately; network/license validation happens after first paint.
+            requestAnimationFrame(()=>{
+                document.getElementById('splashScreen').classList.add('hidden');
+                if(currentHWID && licenseKey){
+                    // Keep the key screen responsive while server validation runs.
+                    document.getElementById('licenseScreen').classList.remove('hidden');
+                    validateStoredLicense();
+                } else {
+                    document.getElementById('licenseScreen').classList.remove('hidden');
+                }
+            });
+        });
+
+        function generateHwid(){
+            if(!currentHWID){
+                currentHWID=isIPAApp() ? getIPAHWID() : makePreviewHWID();
+                if(isIPAApp()){ currentDevice=detectWebDevice(); currentIOS=detectIOSVersion(); detectNativeDeviceBridge(); }
+            }
+            updateDeviceUI();
+            return currentHWID;
+        }
+        async function pasteKey(){ try{ const text=await navigator.clipboard.readText(); document.getElementById('keyInput').value=text.trim(); }catch(e){ alert('Vui lòng dán key vào ô nhập.'); } }
+
+// ================== CHUYỂN TAB ==================
+        function switchTab(tabName, element) {
+            document.querySelectorAll('.tab-page').forEach(page => page.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // ================== XỬ LÝ GAME & TÍNH NĂNG ==================
+        function selectGame(game) {
+            selectedGame = game;
+            document.querySelectorAll('.game-item').forEach(item => item.classList.remove('active'));
+            if (game === 'ff') {
+                document.getElementById('gameFF').classList.add('active');
+                document.getElementById('selectedGameTitle').innerText = 'FREE FIRE';
+            } else {
+                document.getElementById('gameFFMax').classList.add('active');
+                document.getElementById('selectedGameTitle').innerText = 'FREE FIRE MAX';
+            }
+            renderFeatures();
+        }
+
+        function renderFeatures() {
+            const list = document.getElementById('featureList');
+            const currentFeatures = features[selectedGame];
+            list.innerHTML = '';
+            
+            currentFeatures.forEach((feat, index) => {
+                const item = document.createElement('div');
+                item.className = `feature-item ${feat.active ? 'active' : ''}`;
+                item.innerHTML = `
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="${feat.icon}"/></svg>
+                    </div>
+                    <div class="feature-text">
+                        <h4>${feat.name}</h4>
+                        <p>${feat.desc}</p>
+                    </div>
+                    <div class="toggle-switch ${feat.active ? 'active' : ''}" onclick="toggleFeature(event, ${index}, this)"></div>
+                `;
+                item.addEventListener('click', (e) => {
+                    if(e.target.closest('.toggle-switch')) return;
+                    const toggle = item.querySelector('.toggle-switch');
+                    toggleFeature(e, index, toggle);
+                });
+                list.appendChild(item);
+            });
+        }
+
+        function toggleFeature(event, index, toggleElement) {
+            if(event) event.stopPropagation();
+            
+            const currentFeatures = features[selectedGame];
+            currentFeatures[index].active = !currentFeatures[index].active;
+            
+            const parent = toggleElement.closest('.feature-item');
+            if (currentFeatures[index].active) {
+                toggleElement.classList.add('active');
+                parent.classList.add('active');
+            } else {
+                toggleElement.classList.remove('active');
+                parent.classList.remove('active');
+            }
+        }
+
+        function launchGame() {
+            const game = selectedGame === 'ff' ? 'ff' : 'ffmax';
+            try {
+                if (window.webkit?.messageHandlers?.licenseStore) {
+                    window.webkit.messageHandlers.licenseStore.postMessage({ action: 'openGame', game });
+                    return;
+                }
+            } catch (e) {}
+            const scheme = game === 'ffmax' ? 'freefiremax://' : 'freefire://';
+            try { window.location.href = scheme; } catch(e) { alert('Không thể mở game.'); }
+        }
+
+        // ================== TIỆN ÍCH ==================
+        function copyHwid() {
+            const hwid=document.getElementById('hwidValue').innerText;
+            navigator.clipboard.writeText(hwid).then(()=>alert('Đã sao chép HWID: '+hwid)).catch(()=>alert('HWID: '+hwid));
+        }
+        async function logout() {
+            if(!confirm('Bạn có chắc chắn muốn đăng xuất và tháo Key khỏi thiết bị này?')) return;
+
+            const oldKey=String(licenseKey||'').trim().toUpperCase();
+
+            // Khi đang chạy IPA, tháo HWID trên server nhưng giữ lại thời gian còn lại.
+            if(isIPAApp() && oldKey){
+                try{
+                    const snap=await licenseRef.once('value');
+                    const data=snap.val()||{};
+                    const active=(data.activeKeys||[]).find(k=>String(k.id||'').trim().toUpperCase()===oldKey);
+                    const remaining=active?.expiresAt ? Math.max(0,Number(active.expiresAt)-Date.now()) : null;
+
+                    const newCreated=(data.createdKeys||[]).map(k=>{
+                        if(String(k.id||'').trim().toUpperCase()!==oldKey) return k;
+                        return {
+                            ...k,
+                            status:'Chưa kích hoạt',
+                            hwid:null,
+                            activatedAt:null,
+                            expiresAt:null,
+                            remainingMs:remaining!==null?remaining:Number(k.remainingMs||durationMsFromKey(k)),
+                            device:null,
+                            ios:null
+                        };
+                    });
+                    const newActive=(data.activeKeys||[]).filter(k=>String(k.id||'').trim().toUpperCase()!==oldKey);
+                    await licenseRef.update({createdKeys:newCreated,activeKeys:newActive});
+                }catch(e){
+                    console.error(e);
+                    alert('Không thể tháo HWID khỏi server. Vui lòng thử lại.');
+                    return;
+                }
+            }
+
+            stopLicenseHeartbeat();
+            nativeStore('clear');
+            licenseKey=''; expiryDate=null;
+            if(timeLeftInterval) clearInterval(timeLeftInterval);
+            const input=document.getElementById('keyInput'); if(input) input.value='';
+            document.getElementById('mainApp').style.display='none';
+            document.getElementById('licenseScreen').classList.remove('hidden');
+        }
+        function openLink(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+<script>
+// ===== LICENSE SERVER V5 OVERRIDES =====
+function ensureSettings(){
+    if(!serverData.settings) serverData.settings={maintenance:false,message:'Ứng dụng đang được bảo trì. Vui lòng quay lại sau.'};
+}
+function parseDurationMs(k){
+    if(typeof k.remainingMs==='number' && k.remainingMs>=0) return k.remainingMs;
+    const m=String(k.duration||'1 Ngày').match(/(\d+)/); const n=m?parseInt(m[1]):1;
+    return /Giờ/i.test(k.duration||'')?n*3600000:n*86400000;
+}
+function normalizeKey(k){
+    k.remainingMs=parseDurationMs(k);
+    return k;
+}
+const _oldApplyServerData=applyServerData;
+applyServerData=function(data){
+    serverData={
+      createdKeys:Array.isArray(data?.createdKeys)?data.createdKeys.map(normalizeKey):[],
+      activeKeys:Array.isArray(data?.activeKeys)?data.activeKeys:[],
+      latestBatch:data?.latestBatch||null,
+      settings:data?.settings||{maintenance:false,message:'Ứng dụng đang được bảo trì. Vui lòng quay lại sau.'}
+    };
+    updateStatsSummary();
+    if(document.getElementById('tab-active') && !document.getElementById('tab-active').classList.contains('hidden')) renderActiveKeys();
+    if(document.getElementById('tab-created') && !document.getElementById('tab-created').classList.contains('hidden')) renderCreatedKeys();
+    if(document.getElementById('tab-batch') && !document.getElementById('tab-batch').classList.contains('hidden')) renderBatchKeysView();
+    refreshMaintenanceUI();
+};
+const _oldSaveServerData=saveServerData;
+saveServerData=async function(){
+    ensureSettings();
+    localStorage.setItem('shared_createdKeys',JSON.stringify(serverData.createdKeys));
+    localStorage.setItem('shared_activeKeys',JSON.stringify(serverData.activeKeys));
+    localStorage.setItem('shared_latestBatch',JSON.stringify(serverData.latestBatch));
+    localStorage.setItem('shared_settings',JSON.stringify(serverData.settings));
+    updateStatsSummary();
+    if(!firebaseReady){showToast('Firebase chưa sẵn sàng');return;}
+    try{await firebaseDataRef.set({createdKeys:serverData.createdKeys,activeKeys:serverData.activeKeys,latestBatch:serverData.latestBatch,settings:serverData.settings});showToast('Đã lưu server');}
+    catch(e){console.error(e);showToast('Không thể lưu Firebase');}
+};
+
+function handleCreateKey(e){
+    e.preventDefault();
+    ensureSettings();
+    const prefix=(document.getElementById('keyPrefix').value||'KEYHT').toUpperCase();
+    const devices=parseInt(document.getElementById('keyDevices').value)||1;
+    const durationVal=parseInt(document.getElementById('keyDuration').value)||1;
+    const timeUnit=document.getElementById('keyTimeUnit').value;
+    if(timeUnit==='Giờ'&&(durationVal<1||durationVal>24)){alert('Thời gian theo Giờ phải từ 1 đến 24 giờ.');return;}
+    const durationMs=timeUnit==='Giờ'?durationVal*3600000:durationVal*86400000;
+    const duration=`${durationVal} ${timeUnit}`;
+    const createType=document.querySelector('input[name="createType"]:checked').value;
+    let list=[];
+    const add=()=>{const id=generateRandomKey(prefix);serverData.createdKeys.unshift({id,devices,duration,durationMs,remainingMs:durationMs,status:'Chưa kích hoạt',hwid:null,activatedAt:null,expiresAt:null});list.push(id);};
+    if(createType==='single'){add();showToast(`Tạo thành công 1 key (${duration})!`);}
+    else{let q=document.getElementById('batchQuantitySelect').value==='custom'?parseInt(document.getElementById('customBatchQty').value):parseInt(document.getElementById('batchQuantitySelect').value);if(!q||q<1){alert('Số lượng không hợp lệ.');return;}for(let i=0;i<q;i++)add();serverData.latestBatch={keys:list,timestamp:Date.now()};showToast(`Tạo thành công ${q} key (${duration})!`);switchTab('batch');}
+    saveServerData();
+    document.getElementById('createKeyForm').reset();document.getElementById('keyPrefix').value=prefix;
+}
+
+function resetKey(keyId){
+    const now=Date.now();
+    const target=serverData.createdKeys.find(k=>k.id===keyId);
+    const active=serverData.activeKeys.find(k=>k.id===keyId);
+    if(!target)return;
+    let remaining=Number(target.remainingMs||parseDurationMs(target));
+    if(active?.expiresAt) remaining=Math.max(0,Number(active.expiresAt)-now);
+    target.remainingMs=remaining;target.status='Chưa kích hoạt';target.hwid=null;target.activatedAt=null;target.expiresAt=null;
+    serverData.activeKeys=serverData.activeKeys.filter(k=>k.id!==keyId);
+    saveServerData();renderActiveKeys();renderCreatedKeys();updateStatsSummary();showToast('Đã reset HWID và tạm dừng thời gian key');
+}
+function banKey(keyId){
+    const target=serverData.createdKeys.find(k=>k.id===keyId);if(target){target.status='Bị khóa';target.hwid=null;target.activatedAt=null;target.expiresAt=null;}
+    serverData.activeKeys=serverData.activeKeys.filter(k=>k.id!==keyId);saveServerData();renderActiveKeys();renderCreatedKeys();updateStatsSummary();showToast('Đã Ban/Khóa key');
+}
+function unbanKey(keyId){const t=serverData.createdKeys.find(k=>k.id===keyId);if(t){t.status='Chưa kích hoạt';t.hwid=null;}saveServerData();renderCreatedKeys();renderActiveKeys();showToast('Đã mở khóa key');}
+function deleteActiveKey(keyId){resetKey(keyId);}
+function deleteCreatedKey(keyId){serverData.createdKeys=serverData.createdKeys.filter(k=>k.id!==keyId);serverData.activeKeys=serverData.activeKeys.filter(k=>k.id!==keyId);saveServerData();renderCreatedKeys();renderActiveKeys();showToast('Đã xóa key');}
+function removeAllActiveKeys(){if(confirm('Reset toàn bộ key đang kích hoạt?')){serverData.activeKeys.forEach(a=>{const t=serverData.createdKeys.find(k=>k.id===a.id);if(t){t.remainingMs=Math.max(0,Number(a.expiresAt||Date.now())-Date.now());t.status='Chưa kích hoạt';t.hwid=null;t.activatedAt=null;t.expiresAt=null;}});serverData.activeKeys=[];saveServerData();renderActiveKeys();renderCreatedKeys();showToast('Đã reset toàn bộ HWID');}}
+
+async function addTimeToAllKeys(unit,value){
+    ensureSettings(); const delta=unit==='hours'?value*3600000:value*86400000; const now=Date.now(); let count=0;
+    serverData.createdKeys.forEach(k=>{if(k.status==='Bị khóa')return;const a=serverData.activeKeys.find(x=>x.id===k.id);if(a&&a.expiresAt){a.expiresAt=Number(a.expiresAt)+delta;k.expiresAt=a.expiresAt;k.remainingMs=Math.max(0,a.expiresAt-now);}else{k.remainingMs=Number(k.remainingMs||parseDurationMs(k))+delta;}count++;});
+    await saveServerData();renderActiveKeys();renderCreatedKeys();showToast(`Đã cộng thêm ${unit==='hours'?value+' giờ':value+' ngày'} cho ${count} key`);
+}
+function openCustomTimeDialog(){
+    const raw=prompt('Nhập số giờ (1-24) hoặc số ngày, ví dụ: 12h hoặc 7d'); if(!raw)return; const m=raw.trim().match(/^(\d+)\s*([hd])$/i); if(!m){alert('Định dạng: 1h-24h hoặc số ngày dạng 7d.');return;}const n=parseInt(m[1]),u=m[2].toLowerCase();if(u==='h'&&(n<1||n>24)){alert('Giờ chỉ từ 1 đến 24.');return;}addTimeToAllKeys(u==='h'?'hours':'days',n);
+}
+function refreshMaintenanceUI(){
+    ensureSettings();
+    const b=document.getElementById('maintenanceToggleBtn'),i=document.getElementById('maintenanceMessageInput');if(!b)return;
+    const on=!!serverData.settings.maintenance;b.textContent=on?'Đang BẬT':'Đang tắt';b.className='px-4 py-2 rounded-xl text-xs font-bold '+(on?'bg-rose-600 text-white':'bg-slate-800 text-slate-300');if(i)i.value=serverData.settings.message||'Ứng dụng đang được bảo trì. Vui lòng quay lại sau.';
+}
+async function toggleAppMaintenance(){ensureSettings();serverData.settings.maintenance=!serverData.settings.maintenance;serverData.settings.message=(document.getElementById('maintenanceMessageInput')?.value||'Ứng dụng đang được bảo trì. Vui lòng quay lại sau.').trim();await saveServerData();refreshMaintenanceUI();showToast(serverData.settings.maintenance?'Đã BẬT bảo trì app':'Đã TẮT bảo trì app');}
+window.addEventListener('DOMContentLoaded',()=>setTimeout(refreshMaintenanceUI,500));
+</script>
+</body>
+</html>
